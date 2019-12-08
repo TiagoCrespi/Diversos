@@ -6,7 +6,7 @@ declare @pLimiteNrPagina int = 100
 declare @pFillFactor int = 100
 declare @pNucleosParalelizar int = 5
 
---- Tabelas temporárias
+--- Tabelas temporï¿½rias
 declare @fragmentacaoIndice as table(
 	[cdhistoricofragmentacaoindice] [int] IDENTITY(1,1) NOT NULL,
 	[idSeparacao] [int] null,
@@ -46,7 +46,7 @@ from sys.dm_db_index_physical_stats( db_id(), null, null, null,null) a
 	inner join sys.tables t WITH (NOLOCK) on t.object_id = b.object_id
 	inner join sys.schemas s WITH (NOLOCK) on t.schema_id = s.schema_id
 
----- Separação dos rebuils e reorgs conforme o valor do parametro -----
+---- Separaï¿½ï¿½o dos rebuils e reorgs conforme o valor do parametro -----
 --- Rebuild ---
 insert @Rebuild (cdhistoricofragmentacaoindice, idseparacao, dtreferencia, nmservidor, nmdatabase, nmschema, nmtabela, nmindice, nrfragmentacaopercentual,nrpagecount, nrfillfactor, command)
 select 	idseparacao, dtreferencia, nmservidor, nmdatabase, nmschema, nmtabela, nmindice, nrfragmentacaopercentual,nrpagecount, nrfillfactor,
@@ -65,7 +65,7 @@ where nrpagecount > @pLimiteNrPagina
 	and  nrfragmentacaopercentual > @pLimiteReorg
 	and nrfragmentacaopercentual < @pLimiteRebuild 
 
--- Reaproveita a tabela para o loop para não precisar fazer dois loops --
+-- Reaproveita a tabela para o loop para nï¿½o precisar fazer dois loops --
 delete @fragmentacaoIndice;
 
 insert @fragmentacaoIndice (cdhistoricofragmentacaoindice, idseparacao, dtreferencia, nmservidor, nmdatabase, nmschema, nmtabela, nmindice, nrfragmentacaopercentual,nrpagecount, nrfillfactor, command)
@@ -100,7 +100,7 @@ begin
 	set @sqlUpdate = 'UPDATE [dbo].[LogManutencoes] SET ,[dtFim] = ''' + cast(getdate() as varchar(50)) + ''' WHERE cdhistoricofragmentacaoindice = ' + cast(@Contador as varchar(100)) + ''
 	exec(@sqlUpdate)
 
-	-- Remove o regsitro da tabela temporária --
+	-- Remove o regsitro da tabela temporï¿½ria --
 	set @sqlDelete = 'DELETE FROM @fragmentacaoIndice WHERE cdhistoricofragmentacaoindice = ' + cast(@Contador as varchar(100)) + ''
 	exec(@sqlDelete)
 
