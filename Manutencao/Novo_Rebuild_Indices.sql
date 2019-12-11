@@ -77,13 +77,13 @@ select * from @Reorg
 --- Executa os Rebuilds ---
 Declare @Contador int =1 
 Declare @Max int 
-set @Max = (select count(1) from @fragmentacaoIndice)
+set @Max = (select count(1) from @fragmentacaoIndice where dtexecucao is null)
 declare @nmIndex nvarchar(500)
 declare @sqlUpdate nvarchar(2000) = '', @sqlDelete nvarchar(2000) = '', @sqlInsert nvarchar(2000) = '', @tSQL nvarchar(2000) = ''
 
 While @Contador <= @Max
 begin
-	set @tSQL = (select command from @fragmentacaoIndice where cdhistoricofragmentacaoindice = @contador)
+	set @tSQL = (select command from @fragmentacaoIndice where cdhistoricofragmentacaoindice = @contador and dtexecucao is null)
 	-- Insere o registro atual na tabela fisica de log --
 	set @sqlInsert = '
 		INSERT INTO [CrespiDB].[dbo].[LogManutencoes] ([idSeparacao], [nmDatabase], [nmSchema], [nmTabela], [nmIndice], [nrFragmentacaoIndice], 
