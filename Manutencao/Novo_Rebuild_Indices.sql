@@ -2,7 +2,7 @@
 declare @pEdicao nvarchar(100) = cast(SERVERPROPERTY('EngineEdition') as nvarchar)
 declare @pLimiteRebuild int = 30
 declare @pLimiteReorg int = 5
-declare @pLimiteNrPagina int = 100
+declare @pLimiteNrPagina int = 100 
 declare @pFillFactor int = 100 
 declare @pNucleosParalelizar int = 5
 
