@@ -1,3 +1,4 @@
+use adventureworks2016ctp3
 --- Parametros ------
 declare @pEdicao nvarchar(100) = cast(SERVERPROPERTY('EngineEdition') as nvarchar)
 declare @pLimiteRebuild int = 30
