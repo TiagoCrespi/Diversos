@@ -3,8 +3,8 @@
 
 # criação do storageaccount e container
 New-AzResourceGroupDeployment -Name tdcpoa -ResourceGroupName tdcpoa  `
-    -TemplateFile "*\template.json" `
-    -TemplateParameterFile "*\parameters.json"
+    -TemplateFile "<Troque Pelo Caminho do template>\template.json" `
+    -TemplateParameterFile "<Troque Pelo Caminho do template>\parameters.json"
 
 $storageacount = Get-AzStorageAccount -ResourceGroupName tdcpoa `
     -Name stgbackupmigracao 
