@@ -3,8 +3,8 @@
 
 # criação do storageaccount e container
 New-AzResourceGroupDeployment -Name tdcpoa -ResourceGroupName tdcpoa  `
-    -TemplateFile "D:\OneDrive - CRESPIDB\OneDrive - CRESPIDB - Soluções em Plataformas de Dados\Palestras e Artigos\Palestras\Migração para o Azure\tdcpoa\Storage\template.json" `
-    -TemplateParameterFile "D:\OneDrive - CRESPIDB\OneDrive - CRESPIDB - Soluções em Plataformas de Dados\Palestras e Artigos\Palestras\Migração para o Azure\tdcpoa\Storage\parameters.json"
+    -TemplateFile "*\template.json" `
+    -TemplateParameterFile "*\parameters.json"
 
 $storageacount = Get-AzStorageAccount -ResourceGroupName tdcpoa `
     -Name stgbackupmigracao 
